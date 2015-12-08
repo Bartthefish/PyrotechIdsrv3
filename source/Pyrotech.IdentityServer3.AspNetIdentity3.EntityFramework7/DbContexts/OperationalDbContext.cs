@@ -7,9 +7,12 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 {
     public class OperationalDbContext : BaseDbContext, IOperationalDbContext
     {
-        public OperationalDbContext(DbContextOptions options)
+        private readonly string _schemaName;
+
+        public OperationalDbContext(DbContextOptions options, string schemaName = null)
             : base(options)
         {
+            _schemaName = schemaName;
         }
 
         public DbSet<Consent> Consents { get; set; }
@@ -18,6 +21,9 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            if (_schemaName != null)
+                modelBuilder.HasDefaultSchema(_schemaName);
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Consent>()

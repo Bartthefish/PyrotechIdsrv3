@@ -8,9 +8,12 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 {
     public class ClientConfigurationDbContext : BaseDbContext, IClientConfigurationDbContext
     {
-        public ClientConfigurationDbContext(DbContextOptions options) 
+        private readonly string _schemaName;
+
+        public ClientConfigurationDbContext(DbContextOptions options, string schemaName = null) 
             : base(options)
         {
+            _schemaName = schemaName;
         }
 
         public DbSet<Client> Clients { get; set; }
@@ -19,6 +22,9 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            if (_schemaName != null)
+                modelBuilder.HasDefaultSchema(_schemaName);
+
             modelBuilder.Entity<Client>()
                 .ToTable(TableNames.Client)
                 .HasMany(e => e.ClientSecrets).WithOne(e => e.Client).IsRequired().OnDelete(DeleteBehavior.Cascade);

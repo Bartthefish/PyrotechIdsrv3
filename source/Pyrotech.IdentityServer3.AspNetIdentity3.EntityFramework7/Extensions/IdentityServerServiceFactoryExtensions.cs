@@ -16,14 +16,14 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.Extensions
     public static class IdentityServerServiceFactoryExtensions
     {
         public static void RegisterOperationalServices(this IdentityServerServiceFactory factory,
-            DbContextOptions options)
+            DbContextOptions options, string schemaName = null)
         {
             if (factory == null)
                 throw new ArgumentNullException(nameof(factory));
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
 
-            factory.Register(new Registration<IOperationalDbContext>(resolver => new OperationalDbContext(options)));
+            factory.Register(new Registration<IOperationalDbContext>(resolver => new OperationalDbContext(options, schemaName)));
 
             factory.AuthorizationCodeStore = new Registration<IAuthorizationCodeStore, AuthorizationCodeStore>();
 
@@ -34,30 +34,30 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.Extensions
             factory.RefreshTokenStore = new Registration<IRefreshTokenStore, RefreshTokenStore>();
         }
 
-        public static void RegisterConfigurationServices(this IdentityServerServiceFactory factory, DbContextOptions options)
+        public static void RegisterConfigurationServices(this IdentityServerServiceFactory factory, DbContextOptions options, string schemaName = null)
         {
-            RegisterClientStore(factory, options);
-            RegisterScopeStore(factory, options);
+            RegisterClientStore(factory, options, schemaName);
+            RegisterScopeStore(factory, options, schemaName);
         }
 
-        public static void RegisterClientStore(this IdentityServerServiceFactory factory, DbContextOptions options)
+        public static void RegisterClientStore(this IdentityServerServiceFactory factory, DbContextOptions options, string schemaName = null)
         {
             if (factory == null)
                 throw new ArgumentNullException(nameof(factory));
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
-            factory.Register(new Registration<IClientConfigurationDbContext>(resolver => new ClientConfigurationDbContext(options)));
+            factory.Register(new Registration<IClientConfigurationDbContext>(resolver => new ClientConfigurationDbContext(options, schemaName)));
             factory.ClientStore = new Registration<IClientStore, ClientStore>();
             factory.CorsPolicyService = new ClientConfigurationCorsPolicyRegistration(options);
         }
 
-        public static void RegisterScopeStore(this IdentityServerServiceFactory factory, DbContextOptions options)
+        public static void RegisterScopeStore(this IdentityServerServiceFactory factory, DbContextOptions options, string schemaName = null)
         {
             if (factory == null)
                 throw new ArgumentNullException(nameof(factory));
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
-            factory.Register(new Registration<IScopeConfigurationDbContext>(resolver => new ScopeConfigurationDbContext(options)));
+            factory.Register(new Registration<IScopeConfigurationDbContext>(resolver => new ScopeConfigurationDbContext(options, schemaName)));
             factory.ScopeStore = new Registration<IScopeStore, ScopeStore>();
         }
 

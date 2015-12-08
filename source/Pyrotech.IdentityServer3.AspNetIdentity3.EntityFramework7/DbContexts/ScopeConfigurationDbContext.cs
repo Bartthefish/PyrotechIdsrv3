@@ -8,14 +8,21 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 {
     public class ScopeConfigurationDbContext : BaseDbContext, IScopeConfigurationDbContext
     {
-        public ScopeConfigurationDbContext(DbContextOptions options)
+        private readonly string _schemaName;
+
+        public ScopeConfigurationDbContext(DbContextOptions options, string schemaName = null)
             : base(options)
-        { }
+        {
+            _schemaName = schemaName;
+        }
 
         public DbSet<Scope> Scopes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            if (_schemaName != null)
+                modelBuilder.HasDefaultSchema(_schemaName);
+
             modelBuilder.Entity<ScopeClaim>()
                 .ToTable(TableNames.ScopeClaim)
                 .Property(e => e.Name).IsRequired().HasMaxLength(200);
