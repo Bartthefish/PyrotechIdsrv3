@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0-rc1-*",
+  "description": "Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7 Class Library",
+  "authors": [ "Bartthefish" ],
+  "tags": [ "IdentityServer3 AspNetIdentity EntityFramework7" ],
+  "projectUrl": "https://github.com/Bartthefish/PyrotechIdsrv3",
+  "licenseUrl": "https://github.com/Bartthefish/PyrotechIdsrv3/blob/master/LICENSE",
+
+  "dependencies": {
+    "AutoMapper": "4.0.0",
+    "Newtonsoft.Json": "7.0.1",
+    "IdentityServer3": "2.2.0",
+    "EntityFramework.Core": "7.0.0-rc1-final",
+    "EntityFramework.Relational": "7.0.0-rc1-final",
+    "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
+    "IdentityModel": "1.2.1",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "System.Runtime": "4.0.0"
+      }
+    }
+  }
+}
