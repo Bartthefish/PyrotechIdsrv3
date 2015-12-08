@@ -1,9 +1,11 @@
 {
-  "version": "1.0.0-rc1-*",
-  "description": "Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7 Class Library",
+  "version": "1.0.0-rc1-final",
+  "description": "AspNetIdentity3 and EntityFramework7 Implementation for IdentityServer3",
   "authors": [ "Bartthefish" ],
-  "tags": [ "IdentityServer3 AspNetIdentity EntityFramework7" ],
+  "title": "Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7",
+  "tags": [ "IdentityServer OpenID Connect OpenIDConnect ASP.NET Identity Claims EntityFramework7" ],
   "projectUrl": "https://github.com/Bartthefish/PyrotechIdsrv3",
+  "copyright": "Pyrotech Software 2015",
   "licenseUrl": "https://github.com/Bartthefish/PyrotechIdsrv3/blob/master/LICENSE",
 
   "dependencies": {
