@@ -2,6 +2,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.Entities;
 using Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.Interfaces;
+using System;
 
 namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 {
@@ -11,6 +12,19 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 
         public OperationalDbContext(DbContextOptions options, string schemaName = null)
             : base(options)
+        {
+            _schemaName = schemaName;
+        }
+
+        public OperationalDbContext(IServiceProvider provider, string schemaName = null)
+            : base(provider)
+        {
+            _schemaName = schemaName;
+        }
+
+        public OperationalDbContext(IServiceProvider provider, DbContextOptions options,
+            string schemaName = null)
+            : base(provider, options)
         {
             _schemaName = schemaName;
         }

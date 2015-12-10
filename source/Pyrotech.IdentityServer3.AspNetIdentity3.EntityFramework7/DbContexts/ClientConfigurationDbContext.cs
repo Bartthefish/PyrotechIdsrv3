@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Entity;
+﻿using System;
+using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.Entities;
@@ -12,6 +13,19 @@ namespace Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7.DbContexts
 
         public ClientConfigurationDbContext(DbContextOptions options, string schemaName = null) 
             : base(options)
+        {
+            _schemaName = schemaName;
+        }
+
+        public ClientConfigurationDbContext(IServiceProvider provider, string schemaName = null)
+            : base(provider)
+        {
+            _schemaName = schemaName;
+        }
+
+        public ClientConfigurationDbContext(IServiceProvider provider, DbContextOptions options,
+            string schemaName = null)
+            : base(provider, options)
         {
             _schemaName = schemaName;
         }
