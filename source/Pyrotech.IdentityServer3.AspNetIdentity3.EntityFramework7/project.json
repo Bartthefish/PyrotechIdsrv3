@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-rc1-final",
+  "version": "1.0.0-rc2-final",
   "description": "AspNetIdentity3 and EntityFramework7 Implementation for IdentityServer3",
   "authors": [ "Bartthefish" ],
   "title": "Pyrotech.IdentityServer3.AspNetIdentity3.EntityFramework7",
